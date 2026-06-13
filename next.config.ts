@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
         hostname: 'avatars.githubusercontent.com',
       }
     ]
+  },
+  logging: {
+    fetches: {
+      fullUrl: true
+    }
   }
 };
 
