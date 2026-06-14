@@ -1,6 +1,5 @@
 "use client"
 import { Loader2Icon, LogInIcon } from "lucide-react"
-import Image from "next/image"
 import { authClient } from "@/lib/auth-client"
 
 export function UserButton() {
