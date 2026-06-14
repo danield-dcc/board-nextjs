@@ -1,0 +1,35 @@
+import { formatDistanceToNow } from "date-fns"
+import { Comment } from "@/components/comment"
+import { listIssueComments } from "@/http/list-issue-comments"
+
+interface IssueCommentsList {
+  issueId: string
+}
+
+export async function IssueCommentsList({ issueId }: IssueCommentsList) {
+  const { comments } = await listIssueComments({ issueId })
+  if (comments.length === 0) {
+    return (
+      <p className="text-navy-400 text-sm text-center py-2">No comments yet</p>
+    )
+  }
+
+  return (
+    <div className="space-y-3">
+      {comments.map((comment) => (
+        <Comment.Root key={comment.id}>
+          <Comment.Avatar src={comment.author.avatar} />
+          <Comment.Comment>
+            <Comment.Header>
+              <Comment.Author>{comment.author.name}</Comment.Author>
+              <Comment.Time>
+                {formatDistanceToNow(comment.createdAt, { addSuffix: true })}
+              </Comment.Time>
+            </Comment.Header>
+            <Comment.Text>{comment.text}</Comment.Text>
+          </Comment.Comment>
+        </Comment.Root>
+      ))}
+    </div>
+  )
+}
