@@ -13,7 +13,7 @@ export async function getIssueInteractions({
   url.searchParams.set("issueIds", issuesIds.join(","))
 
   const response = await fetch(url, {
-    credentials: "include",
+    credentials: "include", //envia todos os header para a api - incluindo os cooks - para saber qual usuário esta fazendo a requisição
   })
   const data = await response.json()
 
