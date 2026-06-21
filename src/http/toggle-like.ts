@@ -8,8 +8,6 @@ interface ToggleLikeParams {
 export async function toggleLike({ issueId }: ToggleLikeParams) {
   const url = new URL(`/api/issues/${issueId}/like`, clientEnv.NEXT_PUBLIC_API_URL)
 
-  console.log(url)
-
   const response = await fetch(url, {
     method: 'POST'
   })
